@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public enum Allergen
 {
@@ -30,6 +32,12 @@ public class Allergies
 
     public Allergen[] List()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        List<Allergen> allergen_list = new List<Allergen>();
+        foreach (Allergen aller in Enum.GetValues(typeof(Allergen))){
+            if (this.IsAllergicTo(aller)){
+                allergen_list.Add(aller);
+            }
+        }
+        return allergen_list.ToArray();
     }
 }
